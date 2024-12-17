@@ -1,7 +1,6 @@
 include(":model1")
 
 pluginManagement {
-//    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -30,4 +29,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ConfuseApp"
 include(":app")
-include(":plugins")
+include(":plugin")

@@ -1,0 +1,146 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.github.denglongfei",
+    "module": "activityGuard",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "activityGuard-1.0.0.jar",
+          "url": "activityGuard-1.0.0.jar",
+          "size": 610,
+          "sha512": "96506243bf7787d1d89f67ba3e3a8fd32a8bdc5d2aa2fa82d75ded509c4068c74933d1c6cd6daa58bebf9908377691a37144a4a76e38ce5ca4880d672225d47b",
+          "sha256": "cda1e4015f1a46edd8343486cc492aa6e78d493b67ac7b7ec6cd8e297713d7c3",
+          "sha1": "bea859029d8c21e7f646f438b02be6bd04f1e4c9",
+          "md5": "60d0f76f00fcb146b16388d1c1f9f7c1"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.8.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm-util",
+          "version": {
+            "requires": "9.7"
+          }
+        },
+        {
+          "group": "com.google.protobuf",
+          "module": "protobuf-java",
+          "version": {
+            "requires": "3.21.12"
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "requires": "27.0.1-jre"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "aapt2-proto",
+          "version": {
+            "requires": "8.1.4-10154469"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "bundletool",
+          "version": {
+            "requires": "1.14.0"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "8.1.4"
+          }
+        },
+        {
+          "group": "com.android.tools",
+          "module": "common",
+          "version": {
+            "requires": "31.6.0"
+          }
+        },
+        {
+          "group": "com.android.tools",
+          "module": "sdk-common",
+          "version": {
+            "requires": "31.1.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "activityGuard-1.0.0.jar",
+          "url": "activityGuard-1.0.0.jar",
+          "size": 610,
+          "sha512": "96506243bf7787d1d89f67ba3e3a8fd32a8bdc5d2aa2fa82d75ded509c4068c74933d1c6cd6daa58bebf9908377691a37144a4a76e38ce5ca4880d672225d47b",
+          "sha256": "cda1e4015f1a46edd8343486cc492aa6e78d493b67ac7b7ec6cd8e297713d7c3",
+          "sha1": "bea859029d8c21e7f646f438b02be6bd04f1e4c9",
+          "md5": "60d0f76f00fcb146b16388d1c1f9f7c1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.github.denglongfei",
+    "module": "activityGuard",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "activityGuard-1.0.0.jar",
+          "url": "activityGuard-1.0.0.jar",
+          "size": 106116,
+          "sha512": "407740c3189b30ff1de7db6b80d40c5b2a8a6afcdaa76f817c4ad9ae15ee19d1f9e974110aa59c666042c1c6597b2ba35b28e33acea0eb87fb65ea18da59bed7",
+          "sha256": "bcb250027e6debc047e5199ded0b0524b3f1672bd69643aca8f7b15238af1c61",
+          "sha1": "4a60e27c08709c35f83f563f02e8975de2721d43",
+          "md5": "7ebeee8e2a03ee819b3bc50be644ba92"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.8.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm-util",
+          "version": {
+            "requires": "9.7"
+          }
+        },
+        {
+          "group": "com.google.protobuf",
+          "module": "protobuf-java",
+          "version": {
+            "requires": "3.21.12"
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "requires": "27.0.1-jre"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "com.android.tools",
+          "module": "common",
+          "version": {
+            "requires": "31.6.0"
+          }
+        },
+        {
+          "group": "com.android.tools",
+          "module": "sdk-common",
+          "version": {
+            "requires": "31.1.4"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "activityGuard-1.0.0.jar",
+          "url": "activityGuard-1.0.0.jar",
+          "size": 106116,
+          "sha512": "407740c3189b30ff1de7db6b80d40c5b2a8a6afcdaa76f817c4ad9ae15ee19d1f9e974110aa59c666042c1c6597b2ba35b28e33acea0eb87fb65ea18da59bed7",
+          "sha256": "bcb250027e6debc047e5199ded0b0524b3f1672bd69643aca8f7b15238af1c61",
+          "sha1": "4a60e27c08709c35f83f563f02e8975de2721d43",
+          "md5": "7ebeee8e2a03ee819b3bc50be644ba92"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "activityGuard-1.0.0-sources.jar",
+          "url": "activityGuard-1.0.0-sources.jar",
+          "size": 20332,
+          "sha512": "0436f29b0e96b6f30dd98c80f314abbb39af098456efe96f371086399d2977d2cc5e4621f4e205c86af98c0cc81a32bde10cb5b6616f6d97ac484ee5b16258ce",
+          "sha256": "8a9d4df6d5c47be6359f8a3646013292e36eb19a02ac13239ea611ae5f17eba5",
+          "sha1": "2d6f83dc5ca470a321e814b49fc6d86887460079",
+          "md5": "b8bfe9b2ffbb43579e222bbef8f8a0e2"
+        }
+      ]
+    }
+  ]
+}
