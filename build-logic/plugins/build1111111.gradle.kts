@@ -29,17 +29,17 @@ dependencies {
 group = "com.github.denglongfei"
 version = "1.0.0"
 
-//gradlePlugin {
-//    plugins {
-//        create("actGuardPlugin") {
-//            id = "activityGuard"
-//            group = "com.github.denglongfei"
-//            description = "activityGuard"
-//            version = "1.0.0"
-//            implementationClass = "com.kotlin.ObfuscatorPlugin"
-//        }
-//    }
-//}
+gradlePlugin {
+    plugins {
+        create("actGuardPlugin") {
+            id = "activityGuard"
+            group = "com.github.denglongfei"
+            description = "activityGuard"
+            version = "1.0.0"
+            implementationClass = "com.kotlin.ObfuscatorPlugin"
+        }
+    }
+}
 
 
 java {
@@ -49,14 +49,14 @@ java {
 
 publishing {
     publications {
-        register("release", MavenPublication::class) {
+        create("release", MavenPublication::class) {
             from(components["java"])
             groupId = "com.github.denglongfei"
             artifactId = "activityGuard"
             version = "1.0.0"
         }
         repositories {
-            maven { url = uri("https://jitpack.io") }
+            mavenLocal()
         }
     }
 }

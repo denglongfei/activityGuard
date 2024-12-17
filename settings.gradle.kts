@@ -1,7 +1,7 @@
 include(":model1")
 
 pluginManagement {
-    includeBuild("build-logic")
+//    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -25,9 +25,9 @@ dependencyResolutionManagement {
         google()
         maven { url = uri("https://maven.google.com") }
         maven { url = uri("https://jitpack.io") }
-
     }
 }
 
 rootProject.name = "ConfuseApp"
 include(":app")
+include(":plugins")
