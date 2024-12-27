@@ -6,6 +6,7 @@ import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.ScopedArtifacts
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.internal.scope.InternalArtifactType
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.kotlin.model.ActivityGuardExtension
 import com.kotlin.util.buildAapt2Input
 import com.kotlin.util.getClassDirAndName
