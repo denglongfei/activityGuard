@@ -31,7 +31,7 @@ class ObfuscatorPlugin : Plugin<Project> {
                 if (!actGuard.enable.get()) {
                     return@onVariants
                 }
-                val artifacts = variant.artifacts as? ArtifactsImpl ?: return@onVariants
+                //val artifacts = variant.artifacts as? ArtifactsImpl ?: return@onVariants
                 if (!variant.isMinifyEnabled) {
                     println("activityGuard:Not executed, please open isMinifyEnabled ")
                     return@onVariants
