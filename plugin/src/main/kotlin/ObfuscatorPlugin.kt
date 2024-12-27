@@ -6,6 +6,7 @@ import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.ScopedArtifacts
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.internal.scope.InternalArtifactType
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.kotlin.model.ActivityGuardExtension
 import com.kotlin.util.buildAapt2Input
 import com.kotlin.util.getClassDirAndName
@@ -31,7 +32,7 @@ class ObfuscatorPlugin : Plugin<Project> {
                 if (!actGuard.enable.get()) {
                     return@onVariants
                 }
-                val artifacts = variant.artifacts as? ArtifactsImpl ?: return@onVariants
+                //val artifacts = variant.artifacts as? ArtifactsImpl ?: return@onVariants
                 if (!variant.isMinifyEnabled) {
                     println("activityGuard:Not executed, please open isMinifyEnabled ")
                     return@onVariants
@@ -44,14 +45,22 @@ class ObfuscatorPlugin : Plugin<Project> {
                     project.tasks.register<ObfuscatorBundleResTask>(taskBundleName)
                 taskBundleProvider.configure {
                     buildAapt2Input(project, it.aapt2)
-                    it.bundleResFiles.set(artifacts.get(InternalArtifactType.LINKED_RES_FOR_BUNDLE))
-                    it.aaptProguardFile.set(artifacts.get(InternalArtifactType.AAPT_PROGUARD_FILE))
+                    println("activityGuard: ObfuscatorBundleResTask configure  $taskBundleName")
+                    it.bundleResFiles.set(project.layout.buildDirectory.file(
+                        "intermediates/linked_res_for_bundle/${variant.name}/bundled-res.ap_"
+                    ))
+                    it.aaptProguardFile.set(project.layout.buildDirectory.file(
+                        "intermediates/aapt_proguard_file/${variant.name}/aapt_rules.txt"
+                    ))
                     it.outputFile.set(
                         project.layout.buildDirectory.file(
                             "intermediates/activityGuardBundleResTask/${taskBundleName}/mapping.txt"
                         )
                     )
                 }
+                taskBundleProvider
+                    .dependsOn("bundle${variant.name.capitalized()}Resources")
+                    .dependsOn("process${variant.name.capitalized()}Resources")
 
                 //混淆apk资源
                 val taskApkName = "activityGuard${variant.name.capitalized()}ApkResTask"
@@ -126,7 +135,7 @@ class ObfuscatorPlugin : Plugin<Project> {
      */
     private fun fileToClassMappingMap(
         file: File,
-        isReplace: Boolean = true
+        isReplace: Boolean = true,
     ): HashMap<String, String> {
         val hashMap = hashMapOf<String, String>()
         file.forEachLine { line ->
