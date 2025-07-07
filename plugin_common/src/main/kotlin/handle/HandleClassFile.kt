@@ -1,6 +1,7 @@
 package com.kotlin.handle
 
 import com.kotlin.asm.AsmReMapper
+import com.kotlin.asm.MyClassRemapper
 import org.gradle.api.file.Directory
 import org.gradle.api.file.RegularFile
 import org.objectweb.asm.ClassReader
@@ -80,7 +81,7 @@ class HandleClassFile(
                     // 对类文件应用 ASM 处理
                     val classReader = ClassReader(it)
                     val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
-                    val classVisitor = ClassRemapper(
+                    val classVisitor = MyClassRemapper(
                         classWriter,
                         AsmReMapper(classMapping)
                     )
@@ -108,7 +109,7 @@ class HandleClassFile(
                 file.inputStream().use { inputStream ->
                     val classReader = ClassReader(inputStream)
                     val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
-                    val classVisitor = ClassRemapper(
+                    val classVisitor = MyClassRemapper(
                         classWriter,
                         AsmReMapper(classMapping)
                     )
