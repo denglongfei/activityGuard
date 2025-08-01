@@ -1,7 +1,9 @@
 package com.kotlin
 
 import com.android.build.gradle.internal.tasks.BaseTask
+import com.android.builder.dexing.runR8
 import com.kotlin.handle.HandleClassFile
+import com.kotlin.model.ActivityGuardExtension
 import org.gradle.api.file.Directory
 import org.gradle.api.file.RegularFile
 import org.gradle.api.file.RegularFileProperty
@@ -11,6 +13,8 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
+import util.ObfuscatorUtil
+import util.saveClassMappingFile
 
 /**
  * Created by DengLongFei
@@ -30,18 +34,47 @@ abstract class ActivityGuardClassTask : BaseTask() {
     @get:Input
     abstract val classMapping: MapProperty<String, String>
 
+    private val actGuard: ActivityGuardExtension by lazy {
+        project.extensions.getByType(ActivityGuardExtension::class.java)
+    }
 
     @TaskAction
     fun taskAction() {
+        //保存在app目录下的mapping
+        val mappingFile = project.layout.projectDirectory.file("mapping.txt").asFile
+        if (!mappingFile.exists()) {
+            mappingFile.createNewFile()
+        }
+
+        //混淆工具
+        val obfuscatorUtil = ObfuscatorUtil(
+            split = "/",
+            classNameCharPool = actGuard.classNameCharPool,
+            dirNameCharPool = actGuard.dirNameCharPool,
+            outObfuscatedDir = actGuard.outObfuscatedDir,
+
+        )
+        val classMappingGet = classMapping.get().toMutableMap() as LinkedHashMap
+
         //class文件处理
         val handleClassFile = HandleClassFile(
             allJars.get(),
             allDirectories.get(),
             output.get().asFile,
-            classMapping.get()
+            classMappingGet,
+            actGuard,
         )
-        handleClassFile.chaneClassFile()
+        handleClassFile.chaneClassFile(obfuscatorUtil)
 
+
+        //更新mapping.txt
+        saveClassMappingFile(
+            mappingFile.absolutePath,
+            classMappingGet.filter { !(it.key.contains("Hilt_") || it.key.contains("_ViewBinding")) }
+                .mapKeys { it.key.replace("/", ".") }
+                .mapValues { it.value.replace("/", ".") },
+            obfuscatorUtil.dirMapping.mapKeys { it.key.replace("/", ".") }
+                .mapValues { it.value.replace("/", ".") })
     }
 
 

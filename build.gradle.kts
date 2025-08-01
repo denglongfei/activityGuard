@@ -9,6 +9,6 @@ plugins {
 buildscript {
     val mVersion = project.property("mVersion").toString()
     dependencies {
-        //classpath("com.github.denglongfei:activityGuard:$mVersion")
+        classpath("com.github.denglongfei:activityGuard:$mVersion")
     }
 }

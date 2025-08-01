@@ -40,4 +40,4 @@
 #-obfuscationdictionary ../app/keywords.txt
 
 
-
+-keep class * implements java.io.Serializable

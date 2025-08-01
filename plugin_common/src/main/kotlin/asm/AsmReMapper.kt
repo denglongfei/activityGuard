@@ -1,6 +1,8 @@
 package com.kotlin.asm
 
+import com.kotlin.model.ActivityGuardExtension
 import org.objectweb.asm.commons.Remapper
+import util.ObfuscatorUtil
 
 
 /**
@@ -8,7 +10,9 @@ import org.objectweb.asm.commons.Remapper
  * 2024/12/23
  */
 class AsmReMapper(
-    private val classMapping: Map<String, String> = mapOf()
+    private val classMapping: LinkedHashMap<String, String> = LinkedHashMap(),
+    private val actGuard: ActivityGuardExtension = ActivityGuardExtension(),
+    private val obfuscatorUtil: ObfuscatorUtil
 ) : Remapper() {
     override fun map(name: String?): String? {
         return obfuscatorDescriptorOrName(name)
@@ -60,10 +64,67 @@ class AsmReMapper(
         name ?: return null
         return if (name.contains("$")) {
             name.split("$")
-                .joinToString("$") { classMapping[it] ?: it }
+                .joinToString("$") { getObfuscatorName(it) }
         } else {
-            classMapping[name] ?: name
+            getObfuscatorName(name)
         }
 
+    }
+
+    /**
+     * 获取名称
+     */
+    private fun getObfuscatorName(name: String): String {
+        val obName = classMapping[name]
+        if (obName != null) {
+            return obName
+        }
+        //在白名单
+        if (inRegex(whitePatterns, name)) {
+            return name
+        }
+
+        //在额外混淆类
+        if (inRegex(obfuscatorPatterns, name)) {
+            val newName = obfuscatorUtil.getObfuscatedClassName(name)
+            classMapping[name] = newName
+            return newName
+        }
+        return name
+    }
+
+
+    /**
+     * 满足正则规则
+     */
+    private fun inRegex(patterns: List<Regex>, className: String): Boolean {
+        for (regex in patterns) {
+            if (regex.matches(className)) {
+                return true
+            }
+        }
+        return false
+    }
+
+    //白名单
+    private val whitePatterns by lazy {
+        actGuard.whiteClassList.map { pattern ->
+            pattern
+                .replace("*", ".*") // 将 '*' 替换为 '.*'（匹配零个或多个字符）
+                .replace("?", ".?") // 将 '?' 替换为 '.?'（匹配零个或一个字符）
+                .replace("+", ".+") // 将 '+' 替换为 '.+'（匹配一个或多个字符）
+                .toRegex() // 将其转换为正则表达式
+        }
+    }
+
+    //额外需要混淆的类
+    private val obfuscatorPatterns by lazy {
+        actGuard.otherClassList.map { pattern ->
+            pattern
+                .replace("*", ".*") // 将 '*' 替换为 '.*'（匹配零个或多个字符）
+                .replace("?", ".?") // 将 '?' 替换为 '.?'（匹配零个或一个字符）
+                .replace("+", ".+") // 将 '+' 替换为 '.+'（匹配一个或多个字符）
+                .toRegex() // 将其转换为正则表达式
+        }
     }
 }

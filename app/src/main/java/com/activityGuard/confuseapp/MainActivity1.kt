@@ -6,10 +6,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.activityGuard.confuseapp.databinding.ActivityMain1Binding
-import com.activityGuard.model.UserModel
-import com.activityGuard.model.UserModel1
-import com.activityGuard.model.UserModel2
-import com.activityGuard.model.UserModel3
+import model.UserModel
+import model.UserModel1
+import model.UserModel2
+import model.UserModel3
 import com.activityGuard.view.PlayView
 import com.ndk.model1.ModelActivity1
 
@@ -42,7 +42,7 @@ class MainActivity1 : AppCompatActivity() {
         playView.setColor("9999")
     }
 
-    fun changePlayView2(playView:PlayView,ss:String):UserModel3{
+    fun changePlayView2(playView:PlayView,ss:String): UserModel3 {
         playView.setColor("9999")
         return  UserModel3("aaaa").apply {
             aaaaaaaaa(UserModel1(ss))

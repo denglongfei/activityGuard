@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.activityGuard.model.UserModel" />
+            type="model.UserModel" />
 
         <variable
             name="item2"

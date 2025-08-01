@@ -1,5 +1,6 @@
 package com.kotlin
 
+import com.android.SdkConstants
 import com.android.build.api.artifact.ArtifactTransformationRequest
 import com.android.build.api.artifact.ScopedArtifact
 import com.android.build.api.artifact.impl.ArtifactsImpl
@@ -16,6 +17,7 @@ import com.android.build.gradle.internal.services.Aapt2Input
 import com.android.build.gradle.internal.services.Aapt2ThreadPoolBuildService
 import com.android.build.gradle.internal.services.getBuildService
 import com.android.build.gradle.internal.services.getBuildServiceName
+import com.android.build.gradle.internal.tasks.MergeFileTask
 import com.android.build.gradle.internal.utils.setDisallowChanges
 import com.kotlin.model.ActivityGuardExtension
 import org.gradle.api.Project

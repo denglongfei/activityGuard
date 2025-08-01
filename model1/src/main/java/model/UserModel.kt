@@ -1,7 +1,5 @@
-package com.activityGuard.model
+package model
 
-import model.UserModel1
-import model.UserModel4
 import java.io.Serializable
 
 /**

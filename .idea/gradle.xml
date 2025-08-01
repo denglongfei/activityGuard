@@ -19,8 +19,8 @@
             <option value="$PROJECT_DIR$/plugin_main" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
+    <option name="offlineMode" value="true" />
   </component>
 </project>

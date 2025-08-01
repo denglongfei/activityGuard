@@ -1,16 +1,20 @@
 dir mapping:
-com.activityGuard.confuseapp -》 ab
-com.ndk.model1 -》 bb
-com.activityGuard.view -》 cb
+com.activityGuard.confuseapp -》 qq.ab
+com.ndk.model1 -》 qq.bb
+com.activityGuard.view -》 qq.cb
+com.activityGuard.model -》 qq.db
 
 
 
 class mapping:
-com.activityGuard.confuseapp.MainActivity -> ab.a
-com.activityGuard.confuseapp.MainActivity1 -> ab.b
-com.activityGuard.confuseapp.MainActivity2 -> ab.c
-com.activityGuard.confuseapp.MyApp -> ab.d
-com.activityGuard.confuseapp.MyService -> ab.e
-com.ndk.model1.ModelActivity1 -> bb.a
-com.ndk.model1.ModelActivity2 -> bb.b
-com.activityGuard.view.PlayView -> cb.a
+com.activityGuard.confuseapp.MainActivity -> qq.ab.a
+com.activityGuard.confuseapp.MainActivity1 -> qq.ab.b
+com.activityGuard.confuseapp.MyApp -> qq.ab.c
+com.activityGuard.confuseapp.MyService -> qq.ab.d
+com.ndk.model1.ModelActivity1 -> qq.bb.a
+com.ndk.model1.ModelActivity2 -> qq.bb.b
+com.activityGuard.view.PlayView -> qq.cb.a
+model2.UserModel3 -> qq.db.a
+model2.UserModel2 -> qq.db.b
+model2.UserModel1 -> qq.db.c
+model2.UserModel4 -> qq.db.d

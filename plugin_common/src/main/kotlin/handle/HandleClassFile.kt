@@ -2,11 +2,12 @@ package com.kotlin.handle
 
 import com.kotlin.asm.AsmReMapper
 import com.kotlin.asm.MyClassRemapper
+import com.kotlin.model.ActivityGuardExtension
 import org.gradle.api.file.Directory
 import org.gradle.api.file.RegularFile
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
-import org.objectweb.asm.commons.ClassRemapper
+import util.ObfuscatorUtil
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -23,15 +24,22 @@ class HandleClassFile(
     private val allJars: MutableList<RegularFile>,
     private val allDirectories: MutableList<Directory>,
     private val outputFile: File,
-    private val classMapping: Map<String, String>,
+    private val classMapping: LinkedHashMap<String, String>,
+    private val actGuard: ActivityGuardExtension,
 ) {
+
+
+
     private val jarPaths = mutableSetOf<String>()
 
+    private lateinit var obfuscatorUtil:ObfuscatorUtil
     /**
      * 修改class文件
      */
-    fun chaneClassFile() {
+    fun chaneClassFile(obfuscator: ObfuscatorUtil) {
         println("----------" + outputFile.absolutePath)
+        obfuscatorUtil = obfuscator
+        obfuscatorUtil.initMap(classMapping)
         val jarOutputStream = JarOutputStream(
             BufferedOutputStream(
                 FileOutputStream(
@@ -49,6 +57,8 @@ class HandleClassFile(
             processDirectoryWithASM(dir.asFile, jarOutputStream)
         }
         jarOutputStream.close()
+
+
     }
 
     private fun JarOutputStream.writeEntity(name: String, inputStream: InputStream) {
@@ -83,7 +93,7 @@ class HandleClassFile(
                     val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
                     val classVisitor = MyClassRemapper(
                         classWriter,
-                        AsmReMapper(classMapping)
+                        AsmReMapper(classMapping,actGuard,obfuscatorUtil)
                     )
                     classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
                     jarOutput.writeEntity(jarEntry.name, classWriter.toByteArray())
@@ -111,7 +121,7 @@ class HandleClassFile(
                     val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
                     val classVisitor = MyClassRemapper(
                         classWriter,
-                        AsmReMapper(classMapping)
+                        AsmReMapper(classMapping,actGuard,obfuscatorUtil)
                     )
                     classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
                     jarOutput.writeEntity(

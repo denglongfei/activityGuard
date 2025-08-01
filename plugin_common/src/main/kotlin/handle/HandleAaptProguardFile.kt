@@ -2,11 +2,11 @@ package com.kotlin.handle
 
 import com.kotlin.model.ActivityGuardExtension
 import com.kotlin.model.ClassInfo
+import org.gradle.api.Project
 import util.ObfuscatorUtil
 import util.createDirAndFile
 import util.mappingFileToMap
 import util.saveClassMappingFile
-import org.gradle.api.Project
 import java.io.File
 
 /**
@@ -17,11 +17,17 @@ class HandleAaptProguardFile(
     private val project: Project,
     private val proguardFile: File,
     private val dirFile: File,
-    private val actGuard:ActivityGuardExtension
+    private val actGuard: ActivityGuardExtension
 ) {
 
 
-    private val obfuscatorUtil by lazy { ObfuscatorUtil(actGuard.obfuscatorClassFunction) }
+    private val obfuscatorUtil by lazy {
+        ObfuscatorUtil(
+            split = ".", classNameCharPool = actGuard.classNameCharPool,
+            dirNameCharPool = actGuard.dirNameCharPool,
+            outObfuscatedDir = actGuard.outObfuscatedDir,
+        )
+    }
 
     private lateinit var mappingFile: File
 
@@ -119,7 +125,7 @@ class HandleAaptProguardFile(
 
     fun replaceProguardFile(
         classMapping: Map<String, ClassInfo>,
-        dirMapping: Map<String, String>
+        dirMapping: Map<String, String>,
     ) {
         val outFile = File(dirFile, "mapping.txt").also {
             if (it.exists()) {
@@ -156,5 +162,10 @@ class HandleAaptProguardFile(
             content = content.replace(" $oldText ", " $newText ")
         }
         file.writeText(content)
+        val keepString = "\n#keep插件ActivityGuard混淆后的代码\n" +
+                "-keep class ${actGuard.outObfuscatedDir}.**{ *; }"
+        if (!content.contains(keepString)) {
+            file.writeText(content + keepString)
+        }
     }
 }

@@ -75,7 +75,7 @@ fun invokeAapt(aapt2: File, vararg args: String): List<String> {
 /**
  * 获取类的 目录和名称
  */
-fun getClassDirAndName(name: String, split: String = "."): Pair<String, String> {
+fun getClassDirAndName(name: String, split: String ): Pair<String, String> {
     if (name.contains(split)) {
         val index = name.lastIndexOf(split)
         val className = name.substring(index + 1)
@@ -136,8 +136,8 @@ fun invokeOverloadedMethod(
 fun fileToClassMappingMap(
     file: File,
     isReplace: Boolean = true
-): HashMap<String, String> {
-    val hashMap = hashMapOf<String, String>()
+): LinkedHashMap<String, String> {
+    val hashMap = LinkedHashMap<String, String>()
     file.forEachLine { line ->
         if (line.contains("->")) {
             val parts = line.split("->").map { it.trim() }
