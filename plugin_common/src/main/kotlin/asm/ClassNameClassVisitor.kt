@@ -12,6 +12,7 @@ import org.objectweb.asm.ModuleVisitor
 import org.objectweb.asm.RecordComponentVisitor
 import org.objectweb.asm.Type
 import org.objectweb.asm.TypePath
+import util.isDebug
 
 /**
  * Created by DengLongFei

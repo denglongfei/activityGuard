@@ -53,9 +53,6 @@ fun logDebug(log: String) {
 }
 
 
-
-
-
 fun invokeAapt(aapt2: File, vararg args: String): List<String> {
     val processOutputHeader = CachedProcessOutputHandler()
     val processInfoBuilder = ProcessInfoBuilder()
@@ -71,17 +68,27 @@ fun invokeAapt(aapt2: File, vararg args: String): List<String> {
     return lineCollector.result
 }
 
+var count = 0
 
 /**
  * 获取类的 目录和名称
  */
-fun getClassDirAndName(name: String, split: String ): Pair<String, String> {
+fun getClassDirAndName(name: String, split: String): Pair<String, String> {
     if (name.contains(split)) {
         val index = name.lastIndexOf(split)
         val className = name.substring(index + 1)
         val directory = name.substring(0, index)
         return directory to className
     } else {
+        println("------getClassDirAndName " + name + " split " + split)
+        try {
+            if (count < 2) {
+                count++
+                error("----------")
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         return "" to name
     }
 

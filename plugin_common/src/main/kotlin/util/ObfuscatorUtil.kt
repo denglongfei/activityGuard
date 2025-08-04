@@ -34,11 +34,8 @@ class ObfuscatorUtil(
         this.dirMapping = dirMapping
         dirValueSet = dirMapping.values.toHashSet()
         classMapping.forEach {
-            val (dir, name) = getClassDirAndName(it.key, split)
-            val (obfuscatorDir, obfuscatorName) = getClassDirAndName(
-                it.value.obfuscatorClassName,
-                split
-            )
+            val (dir, name) = getObfClassDirAndName(it.key)
+            val (obfuscatorDir, obfuscatorName) = getObfClassDirAndName(it.value.obfuscatorClassName,)
             dirAndClassList.getOrPut(dir) { LinkedHashMap() }[name] = obfuscatorName
             dirMapping[dir] = obfuscatorDir
             dirValueSet.add(obfuscatorDir)
@@ -49,8 +46,8 @@ class ObfuscatorUtil(
         classMapping: LinkedHashMap<String, String>
     ) {
         classMapping.forEach {
-            val (dir, name) = getClassDirAndName(it.key, split = split)
-            val (obfuscatorDir, obfuscatorName) = getClassDirAndName(it.value, split = split)
+            val (dir, name) = getObfClassDirAndName(it.key)
+            val (obfuscatorDir, obfuscatorName) = getObfClassDirAndName(it.value)
             dirAndClassList.getOrPut(dir) { LinkedHashMap() }[name] = obfuscatorName
             dirMapping[dir] = obfuscatorDir
             dirValueSet.add(obfuscatorDir)
@@ -61,7 +58,10 @@ class ObfuscatorUtil(
      *  com.activityGuard.a to a.b
      */
     fun getObfuscatedClassName(name: String): String {
-        val (dir, name) = getClassDirAndName(name, split)
+        val (dir, name) = getObfClassDirAndName(name)
+        if (dir.isEmpty()){
+            return  name
+        }
         val newDir = dirMapping[dir] ?: let {
             val tem = generateDirName(dir)
             addDirMappingItem(dir, tem)
@@ -76,9 +76,23 @@ class ObfuscatorUtil(
         }
     }
 
+    /**
+     * 获取目录和类名  使用 "/"  "."
+     */
+    private fun getObfClassDirAndName(name: String): Pair<String, String> {
+        return   getClassDirAndName(name, split)
+//        return if (split == "/"){
+//            getClassDirAndName(name.replace(".", "/"), split)
+//        }else{
+//            getClassDirAndName(name, split)
+//        }
+    }
+
+
     private var dirOffset = 0
 
     private fun generateDirName(dir: String): String {
+//        return dir
         while (true) {
             val dirName = "$outObfuscatedDir$split" + generateName(
                 dirMapping.size + dirOffset,

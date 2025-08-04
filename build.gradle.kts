@@ -10,5 +10,6 @@ buildscript {
     val mVersion = project.property("mVersion").toString()
     dependencies {
         classpath("com.github.denglongfei:activityGuard:$mVersion")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.46")
     }
 }

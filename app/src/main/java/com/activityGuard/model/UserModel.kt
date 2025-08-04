@@ -11,7 +11,7 @@ import java.io.Serializable
 data class UserModel(val name: String = ""):Serializable
 data class UserModel1(val name: String = ""):Serializable
 data class UserModel2(val name: String = ""):Serializable
-data class UserModel3(val name: String = ""){
+data class UserModel3(val name: String = ""):Serializable{
     fun aaaaaaaaa(userModel1: UserModel1): UserModel4 {
         val ss =   userModel1.name
         return  UserModel4(ss)

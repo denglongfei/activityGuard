@@ -1,12 +1,15 @@
 package com.kotlin.handle
 
 import com.kotlin.asm.AsmReMapper
+import com.kotlin.asm.ClassNameClassVisitor
 import com.kotlin.asm.MyClassRemapper
 import com.kotlin.model.ActivityGuardExtension
+import com.kotlin.model.ObfuscatorMapping
 import org.gradle.api.file.Directory
 import org.gradle.api.file.RegularFile
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
+import org.objectweb.asm.Opcodes
 import util.ObfuscatorUtil
 import java.io.BufferedOutputStream
 import java.io.File
@@ -83,6 +86,7 @@ class HandleClassFile(
      * 处理jar
      */
     private fun processJarWithASM(inputJar: File, jarOutput: JarOutputStream) {
+
         val jarFile = JarFile(inputJar)
         jarFile.entries().iterator().forEach { jarEntry ->
             val entryName = jarEntry.name
@@ -97,6 +101,18 @@ class HandleClassFile(
                     )
                     classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
                     jarOutput.writeEntity(jarEntry.name, classWriter.toByteArray())
+
+
+//                    // 对类文件应用 ASM 处理
+//                    val classReader = ClassReader(it)
+//                    val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
+//                    val classVisitor = ClassNameClassVisitor(
+//                        Opcodes.ASM9,
+//                        classWriter,
+//                        ObfuscatorMapping(classMapping)
+//                    )
+//                    classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
+//                    jarOutput.writeEntity(jarEntry.name, classWriter.toByteArray())
                 }
             } else {
                 // 非类文件直接复制
@@ -128,6 +144,20 @@ class HandleClassFile(
                         relativePath,
                         classWriter.toByteArray()
                     )
+
+
+//                    val classReader = ClassReader(inputStream)
+//                    val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
+//                    val classVisitor = ClassNameClassVisitor(
+//                        Opcodes.ASM9,
+//                        classWriter,
+//                        ObfuscatorMapping(classMapping)
+//                    )
+//                    classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
+//                    jarOutput.writeEntity(
+//                        relativePath,
+//                        classWriter.toByteArray()
+//                    )
                 }
             } else if (file.isFile) {
                 file.inputStream().use { inputStream ->

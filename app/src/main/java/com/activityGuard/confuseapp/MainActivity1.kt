@@ -3,6 +3,7 @@ package com.activityGuard.confuseapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.activityGuard.confuseapp.databinding.ActivityMain1Binding
@@ -11,9 +12,14 @@ import model.UserModel1
 import model.UserModel2
 import model.UserModel3
 import com.activityGuard.view.PlayView
+import com.activityGuard.vm.MainViewModel
 import com.ndk.model1.ModelActivity1
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity1 : AppCompatActivity() {
+    val viewModel : MainViewModel  by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main1)
@@ -35,6 +41,7 @@ class MainActivity1 : AppCompatActivity() {
         playView.setOnClickListener {
             startActivity(Intent(this, ModelActivity1::class.java))
         }
+        println("  viewModel  "+viewModel.sss)
 
     }
 
@@ -42,7 +49,7 @@ class MainActivity1 : AppCompatActivity() {
         playView.setColor("9999")
     }
 
-    fun changePlayView2(playView:PlayView,ss:String): UserModel3 {
+    fun changePlayView2(playView:PlayView,ss:String):UserModel3{
         playView.setColor("9999")
         return  UserModel3("aaaa").apply {
             aaaaaaaaa(UserModel1(ss))

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("activityGuard")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 actGuard {
@@ -10,12 +12,9 @@ actGuard {
         "com.activityGuard.model.UserModel",
         "*.MainActivity2",
     )
-    //类名混淆  com.activityGuard.a  -> a.b
-//    obfuscatorClassFunction = {
-//        it
-//    }
     otherClassList=hashSetOf(
-        "com.activityGuard.model.*",
+//        "com.activityGuard.model.*",
+        "com.activityGuard.*",
     )
     outObfuscatedDir="qq"
 }
@@ -136,5 +135,9 @@ dependencies {
 
 
     implementation(project(":model1"))
+
+    implementation("com.google.dagger:hilt-android:2.46")
+    kapt("com.google.dagger:hilt-compiler:2.46")
+
 
 }

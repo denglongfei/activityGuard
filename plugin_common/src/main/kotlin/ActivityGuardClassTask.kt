@@ -2,18 +2,23 @@ package com.kotlin
 
 import com.android.build.gradle.internal.tasks.BaseTask
 import com.android.builder.dexing.runR8
+import com.kotlin.asm.ClassNameClassVisitor
 import com.kotlin.handle.HandleClassFile
 import com.kotlin.model.ActivityGuardExtension
+import com.kotlin.model.ObfuscatorMapping
 import org.gradle.api.file.Directory
 import org.gradle.api.file.RegularFile
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.MapProperty
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
+import util.LogFileUtil
 import util.ObfuscatorUtil
+import util.logFileUtil
 import util.saveClassMappingFile
 
 /**
@@ -38,13 +43,24 @@ abstract class ActivityGuardClassTask : BaseTask() {
         project.extensions.getByType(ActivityGuardExtension::class.java)
     }
 
+
     @TaskAction
     fun taskAction() {
+
+
+
         //保存在app目录下的mapping
         val mappingFile = project.layout.projectDirectory.file("mapping.txt").asFile
         if (!mappingFile.exists()) {
             mappingFile.createNewFile()
         }
+//        //日志文件
+//        val logFile = project.layout.projectDirectory.file("logFile.txt").asFile
+//        if (!logFile.exists()) {
+//            logFile.createNewFile()
+//        }
+//        logFileUtil?.closLog()
+//        logFileUtil = LogFileUtil(logFile.outputStream())
 
         //混淆工具
         val obfuscatorUtil = ObfuscatorUtil(

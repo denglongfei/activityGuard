@@ -86,9 +86,17 @@ class AsmReMapper(
 
         //在额外混淆类
         if (inRegex(obfuscatorPatterns, name)) {
-            val newName = obfuscatorUtil.getObfuscatedClassName(name)
-            classMapping[name] = newName
-            return newName
+            if (name.contains(".")) {
+                val newName =
+                    obfuscatorUtil.getObfuscatedClassName(name.replace(".", "/")).replace("/", ".")
+                classMapping[name] = newName
+                return newName
+            } else {
+                val newName = obfuscatorUtil.getObfuscatedClassName(name)
+                classMapping[name] = newName
+                return newName
+            }
+
         }
         return name
     }

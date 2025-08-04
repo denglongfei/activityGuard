@@ -2,19 +2,56 @@ dir mapping:
 com.activityGuard.confuseapp -》 qq.ab
 com.ndk.model1 -》 qq.bb
 com.activityGuard.view -》 qq.cb
-com.activityGuard.model -》 qq.db
+com.activityGuard.confuseapp.ui.theme -》 qq.db
+com.activityGuard.vm -》 qq.eb
+com.activityGuard.confuseapp.databinding -》 qq.fb
+com.activityGuard.confuseapp.Greeting (MainActivity -》 qq.gb
+com.activityGuard.confuseapp.GreetingPreview (MainActivity -》 qq.hb
+com.activityGuard.confuseapp.ui.theme.ConfuseAppTheme (Theme -》 qq.ib
+com.activityGuard.model -》 qq.jb
+com.activityGuard -》 qq.kb
+com.activityGuard.vm.MainViewModel_HiltModules -》 qq.lb
 
 
 
 class mapping:
 com.activityGuard.confuseapp.MainActivity -> qq.ab.a
 com.activityGuard.confuseapp.MainActivity1 -> qq.ab.b
-com.activityGuard.confuseapp.MyApp -> qq.ab.c
+com.activityGuard.confuseapp.MyApp -> qq.ab.y
 com.activityGuard.confuseapp.MyService -> qq.ab.d
 com.ndk.model1.ModelActivity1 -> qq.bb.a
 com.ndk.model1.ModelActivity2 -> qq.bb.b
 com.activityGuard.view.PlayView -> qq.cb.a
-model2.UserModel3 -> qq.db.a
-model2.UserModel2 -> qq.db.b
-model2.UserModel1 -> qq.db.c
-model2.UserModel4 -> qq.db.d
+com.activityGuard.confuseapp.R -> qq.ab.m
+com.activityGuard.confuseapp.DataBinderMapperImpl -> qq.ab.n
+com.activityGuard.confuseapp.BR -> qq.ab.o
+com.activityGuard.confuseapp.ComposableSingletons -> qq.ab.q
+com.activityGuard.confuseapp.MainActivityKt -> qq.ab.q
+com.activityGuard.confuseapp.ui.theme.ThemeKt -> qq.db.a
+com.activityGuard.confuseapp.DaggerMyApp_HiltComponents_SingletonC -> qq.ab.r
+com.activityGuard.confuseapp.MyApp_HiltComponents -> qq.ab.s
+com.activityGuard.vm.MainViewModel_HiltModules_KeyModule_ProvideFactory -> qq.eb.a
+com.activityGuard.vm.MainViewModel -> qq.eb.c
+com.activityGuard.confuseapp.databinding.ActivityMain1BindingImpl -> qq.fb.a
+com.activityGuard.confuseapp.databinding.ActivityMain2BindingImpl -> qq.fb.b
+com.activityGuard.confuseapp.databinding.ActivityMain1Binding -> qq.fb.c
+com.activityGuard.confuseapp.databinding.ActivityMain2Binding -> qq.fb.d
+com.activityGuard.confuseapp.DataBindingTriggerClass -> qq.ab.t
+com.activityGuard.confuseapp.MainActivity1_GeneratedInjector -> qq.ab.y
+com.activityGuard.confuseapp.MyApp_GeneratedInjector -> qq.ab.y
+com.activityGuard.confuseapp.TestClass -> qq.ab.w
+com.activityGuard.confuseapp.Greeting (MainActivity.kt:34) -> qq.gb.a
+com.activityGuard.confuseapp.GreetingPreview (MainActivity.kt:43) -> qq.hb.a
+com.activityGuard.confuseapp.MyApp_ComponentTreeDeps -> qq.ab.x
+com.activityGuard.vm.MainViewModel_HiltModules -> qq.eb.c
+com.activityGuard.confuseapp.ui.theme.ColorKt -> qq.db.b
+com.activityGuard.confuseapp.ui.theme.ConfuseAppTheme (Theme.kt:40) -> qq.ib.a
+com.activityGuard.confuseapp.ui.theme.TypeKt -> qq.db.c
+com.activityGuard.model.UserModel1 -> qq.jb.a
+com.activityGuard.model.UserModel2 -> qq.jb.b
+com.activityGuard.model.UserModel3 -> qq.jb.c
+com.activityGuard.model.UserModel4 -> qq.jb.d
+com.activityGuard.vm.MainViewModel_Factory -> qq.eb.d
+com.activityGuard.confuseapp -> qq.kb.a
+com.activityGuard.vm.MainViewModel_HiltModules.BindsModule -> qq.lb.a
+com.activityGuard.vm.MainViewModel_HiltModules.KeyModule -> qq.lb.b

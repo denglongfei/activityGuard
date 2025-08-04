@@ -23,7 +23,8 @@ class HandleAaptProguardFile(
 
     private val obfuscatorUtil by lazy {
         ObfuscatorUtil(
-            split = ".", classNameCharPool = actGuard.classNameCharPool,
+            split = ".",
+            classNameCharPool = actGuard.classNameCharPool,
             dirNameCharPool = actGuard.dirNameCharPool,
             outObfuscatedDir = actGuard.outObfuscatedDir,
         )
