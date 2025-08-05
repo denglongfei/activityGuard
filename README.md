@@ -23,7 +23,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath "com.github.denglongfei:activityGuard:1.2.1"
+        classpath "com.github.denglongfei:activityGuard:1.3.0"
     }
 }
 ```
