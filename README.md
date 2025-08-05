@@ -38,13 +38,25 @@ plugins {
 //    isEnable = true
 //    //不需要混淆的类
 //    whiteClassList = hashSetOf(
-//        "com.activityGuard.confuseapp.MainActivity1",
-//        "*.MainActivity2",
+//        "com.activityGuard.model.Bean",
 //    )
-//    //类名混淆  com.activityGuard.a  -> a.b
-//    obfuscatorClassFunction = {
-//        it
-//    }
+//    //额外需要混淆的类
+//    otherClassList = hashSetOf(
+//        "com.activityGuard.*",
+//
+//        )
+//    //额外需要混淆 需要修改包名的类
+//    otherChangePackageList = hashSetOf(
+//        "com.activityGuard.vm.*",
+//    )
+//    //类名混淆字符串
+//     classNameCharPool = "abcdefghijklmnopqrstuvwxyz0123456789"
+//
+//    //包名混淆字符串
+//     dirNameCharPool = "abcdefghijklmnopqrstuvwxyz"
+//
+//    //混淆后都会输出在这个目录下
+//    outObfuscatedDir = "guard"
 //}
 
 
