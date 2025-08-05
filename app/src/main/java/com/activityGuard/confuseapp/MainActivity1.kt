@@ -1,5 +1,6 @@
 package com.activityGuard.confuseapp
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -7,10 +8,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.activityGuard.confuseapp.databinding.ActivityMain1Binding
-import model.UserModel
-import model.UserModel1
-import model.UserModel2
-import model.UserModel3
+import com.activityGuard.model.Bean
+import com.activityGuard.model.Bean1
+import com.activityGuard.model.Bean2
+import com.activityGuard.model.Bean3
 import com.activityGuard.view.PlayView
 import com.activityGuard.vm.MainViewModel
 import com.ndk.model1.ModelActivity1
@@ -25,10 +26,10 @@ class MainActivity1 : AppCompatActivity() {
         setContentView(R.layout.activity_main1)
         val view = findViewById<View>(R.id.main)
         println("view -----1 " + view.tag)
-        println("---" + UserModel().toString() + UserModel3().toString() + UserModel2().toString())
+        println("---" + Bean().toString() + Bean3().toString() + Bean2().toString())
         val binding =
             DataBindingUtil.setContentView<ActivityMain1Binding>(this, R.layout.activity_main1)
-        binding.item = UserModel("aaaa")
+        binding.item = Bean(name ="aaaa")
         binding.item2 = "bbbbb"
         println("view -----2 " + binding.root.tag)
 
@@ -49,10 +50,10 @@ class MainActivity1 : AppCompatActivity() {
         playView.setColor("9999")
     }
 
-    fun changePlayView2(playView:PlayView,ss:String):UserModel3{
+    fun changePlayView2(playView:PlayView,ss:String):Bean3{
         playView.setColor("9999")
-        return  UserModel3("aaaa").apply {
-            aaaaaaaaa(UserModel1(ss))
+        return  Bean3("aaaa").apply {
+            aaaaaaaaa(Bean1(ss))
         }
     }
 }

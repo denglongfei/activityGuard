@@ -9,14 +9,16 @@ plugins {
 actGuard {
     isEnable = true
     whiteClassList = hashSetOf(
-        "com.activityGuard.model.UserModel",
-        "*.MainActivity2",
+        "com.activityGuard.model.Bean",
     )
-    otherClassList=hashSetOf(
-//        "com.activityGuard.model.*",
+    otherClassList = hashSetOf(
         "com.activityGuard.*",
+
+        )
+    otherChangePackageList = hashSetOf(
+        "com.activityGuard.vm.*",
     )
-    outObfuscatedDir="qq"
+    outObfuscatedDir = "qq"
 }
 
 android {

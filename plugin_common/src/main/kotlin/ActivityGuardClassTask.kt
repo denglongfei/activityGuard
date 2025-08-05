@@ -68,7 +68,7 @@ abstract class ActivityGuardClassTask : BaseTask() {
             classNameCharPool = actGuard.classNameCharPool,
             dirNameCharPool = actGuard.dirNameCharPool,
             outObfuscatedDir = actGuard.outObfuscatedDir,
-
+            otherChangePackageList = actGuard.otherChangePackageList
         )
         val classMappingGet = classMapping.get().toMutableMap() as LinkedHashMap
 

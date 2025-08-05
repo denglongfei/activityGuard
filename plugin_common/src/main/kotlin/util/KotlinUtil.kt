@@ -68,7 +68,6 @@ fun invokeAapt(aapt2: File, vararg args: String): List<String> {
     return lineCollector.result
 }
 
-var count = 0
 
 /**
  * 获取类的 目录和名称
@@ -80,15 +79,6 @@ fun getClassDirAndName(name: String, split: String): Pair<String, String> {
         val directory = name.substring(0, index)
         return directory to className
     } else {
-        println("------getClassDirAndName " + name + " split " + split)
-        try {
-            if (count < 2) {
-                count++
-                error("----------")
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
         return "" to name
     }
 
@@ -174,3 +164,27 @@ fun fileToClassMappingMap(
     }
     return hashMap
 }
+
+
+/**
+ * 满足正则规则
+ */
+ fun inRegex(patterns: List<Regex>, className: String): Boolean {
+    for (regex in patterns) {
+        if (regex.matches(className)) {
+            return true
+        }
+    }
+    return false
+}
+
+fun HashSet<String>.toPatterns(): List<Regex> {
+  return  this.map { pattern ->
+        pattern
+            .replace("*", ".*") // 将 '*' 替换为 '.*'（匹配零个或多个字符）
+            .replace("?", ".?") // 将 '?' 替换为 '.?'（匹配零个或一个字符）
+            .replace("+", ".+") // 将 '+' 替换为 '.+'（匹配一个或多个字符）
+            .toRegex() // 将其转换为正则表达式
+    }
+}
+

@@ -1,6 +1,7 @@
 package com.activityGuard.vm
 
 import androidx.lifecycle.ViewModel
+import com.activityGuard.model.AppInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -9,6 +10,8 @@ import javax.inject.Inject
  * 2025/08/04
  */
 @HiltViewModel
-class MainViewModel  @Inject constructor(): ViewModel() {
-    val  sss = "MainViewModel"
+class MainViewModel  @Inject constructor(
+    app: AppInfo
+): ViewModel() {
+    val  sss = "MainViewModel"+app.hashCode()
 }

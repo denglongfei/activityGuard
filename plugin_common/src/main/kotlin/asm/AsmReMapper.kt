@@ -86,11 +86,28 @@ class AsmReMapper(
 
         //在额外混淆类
         if (inRegex(obfuscatorPatterns, name)) {
+            if (name.contains("(") && name.contains(")")){
+                return name
+            }
+            if (name.endsWith("_ViewBinding")){
+                val replaceName = name.replace("_ViewBinding", "")
+                val mapName = classMapping[replaceName]
+                if (mapName != null) {
+                    return mapName+"_ViewBinding"
+                }
+                val newName = obfuscatorUtil.getObfuscatedClassName(replaceName)
+                classMapping[replaceName] = newName
+                return newName+"_ViewBinding"
+            }
             if (name.contains(".")) {
-                val newName =
-                    obfuscatorUtil.getObfuscatedClassName(name.replace(".", "/")).replace("/", ".")
-                classMapping[name] = newName
-                return newName
+                val replaceName = name.replace(".", "/")
+                val mapName = classMapping[replaceName]
+                if (mapName != null) {
+                    return mapName.replace("/", ".")
+                }
+                val newName = obfuscatorUtil.getObfuscatedClassName(replaceName)
+                classMapping[replaceName] = newName
+                return newName.replace("/", ".")
             } else {
                 val newName = obfuscatorUtil.getObfuscatedClassName(name)
                 classMapping[name] = newName
