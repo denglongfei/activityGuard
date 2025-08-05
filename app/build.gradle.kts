@@ -1,25 +1,37 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("activityGuard")
+//    id("activityGuard")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
 
-actGuard {
-    isEnable = true
-    whiteClassList = hashSetOf(
-        "com.activityGuard.model.Bean",
-    )
-    otherClassList = hashSetOf(
-        "com.activityGuard.*",
 
-        )
-    otherChangePackageList = hashSetOf(
-        "com.activityGuard.vm.*",
-    )
-    outObfuscatedDir = "qq"
-}
+//actGuard {
+//    //是否开启
+//    isEnable = true
+//    //不需要混淆的类
+//    whiteClassList = hashSetOf(
+//        "com.activityGuard.model.Bean",
+//    )
+//    //额外需要混淆的类
+//    otherClassList = hashSetOf(
+//        "com.activityGuard.*",
+//
+//        )
+//    //额外需要混淆 需要修改包名的类
+//    otherChangePackageList = hashSetOf(
+//        "com.activityGuard.vm.*",
+//    )
+//    //类名混淆字符串
+//     classNameCharPool = "abcdefghijklmnopqrstuvwxyz0123456789"
+//
+//    //包名混淆字符串
+//     dirNameCharPool = "abcdefghijklmnopqrstuvwxyz"
+//
+//    //混淆后都会输出在这个目录下
+//    outObfuscatedDir = "guard"
+//}
 
 android {
 
