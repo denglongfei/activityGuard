@@ -42,11 +42,11 @@ plugins {
 //    )
 //    //额外需要混淆的类
 //    otherClassList = hashSetOf(
-//        "com.activityGuard.*",
-//
+////        "com.activityGuard.*",
+//        "com.activityGuard.vm.*",
 //        )
-//    //额外需要混淆 需要修改包名的类
-//    otherChangePackageList = hashSetOf(
+//    //需要修改包名的类
+//    changePackageList = hashSetOf(
 //        "com.activityGuard.vm.*",
 //    )
 //    //类名混淆字符串

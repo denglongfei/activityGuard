@@ -2,12 +2,8 @@ dir mapping:
 com.activityGuard.confuseapp -》 com.activityGuard.confuseapp
 com.ndk.model1 -》 com.ndk.model1
 com.activityGuard.view -》 com.activityGuard.view
-com.activityGuard.confuseapp.ui.theme -》 com.activityGuard.confuseapp.ui.theme
-com.activityGuard.vm -》 com.activityGuard.vm
-com.activityGuard.model -》 com.activityGuard.model
-com.activityGuard.confuseapp.databinding -》 com.activityGuard.confuseapp.databinding
-com.activityGuard -》 com.activityGuard
-com.activityGuard.vm.MainViewModel_HiltModules -》 com.activityGuard.vm.MainViewModel_HiltModules
+com.activityGuard.vm -》 db
+com.activityGuard.vm.MainViewModel_HiltModules -》 eb
 
 
 
@@ -20,35 +16,9 @@ com.activityGuard.confuseapp.MyService -> com.activityGuard.confuseapp.e
 com.ndk.model1.ModelActivity1 -> com.ndk.model1.a
 com.ndk.model1.ModelActivity2 -> com.ndk.model1.b
 com.activityGuard.view.PlayView -> com.activityGuard.view.a
-com.activityGuard.confuseapp.R -> com.activityGuard.confuseapp.p
-com.activityGuard.confuseapp.DataBinderMapperImpl -> com.activityGuard.confuseapp.q
-com.activityGuard.confuseapp.BR -> com.activityGuard.confuseapp.r
-com.activityGuard.confuseapp.ComposableSingletons -> com.activityGuard.confuseapp.s
-com.activityGuard.confuseapp.MainActivityKt -> com.activityGuard.confuseapp.t
-com.activityGuard.confuseapp.ui.theme.ThemeKt -> com.activityGuard.confuseapp.ui.theme.a
-com.activityGuard.confuseapp.DaggerMyApp_HiltComponents_SingletonC -> com.activityGuard.confuseapp.u
-com.activityGuard.confuseapp.MyApp_HiltComponents -> com.activityGuard.confuseapp.v
-com.activityGuard.vm.MainViewModel_HiltModules_KeyModule_ProvideFactory -> com.activityGuard.vm.a
-com.activityGuard.model.AppInfo -> com.activityGuard.model.a
-com.activityGuard.vm.MainViewModel -> com.activityGuard.vm.b
-com.activityGuard.confuseapp.databinding.ActivityMain1BindingImpl -> com.activityGuard.confuseapp.databinding.a
-com.activityGuard.confuseapp.databinding.ActivityMain2BindingImpl -> com.activityGuard.confuseapp.databinding.b
-com.activityGuard.confuseapp.databinding.ActivityMain1Binding -> com.activityGuard.confuseapp.databinding.c
-com.activityGuard.confuseapp.databinding.ActivityMain2Binding -> com.activityGuard.confuseapp.databinding.d
-com.activityGuard.confuseapp.DataBindingTriggerClass -> com.activityGuard.confuseapp.w
-com.activityGuard.confuseapp.MainActivity1_GeneratedInjector -> com.activityGuard.confuseapp.x
-com.activityGuard.confuseapp.MyApp_GeneratedInjector -> com.activityGuard.confuseapp.y
-com.activityGuard.model.Bean3 -> com.activityGuard.model.b
-com.activityGuard.model.Bean2 -> com.activityGuard.model.c
-com.activityGuard.confuseapp.TestClass -> com.activityGuard.confuseapp.z
-com.activityGuard.model.Bean1 -> com.activityGuard.model.d
-com.activityGuard.model.Bean4 -> com.activityGuard.model.e
-com.activityGuard.confuseapp.MyApp_ComponentTreeDeps -> com.activityGuard.confuseapp.c_0
-com.activityGuard.vm.MainViewModel_HiltModules -> com.activityGuard.vm.c
-com.activityGuard.confuseapp.ui.theme.ColorKt -> com.activityGuard.confuseapp.ui.theme.b
-com.activityGuard.confuseapp.ui.theme.TypeKt -> com.activityGuard.confuseapp.ui.theme.c
-com.activityGuard.model.AppInfo_Factory -> com.activityGuard.model.f
-com.activityGuard.vm.MainViewModel_Factory -> com.activityGuard.vm.d
-com.activityGuard.confuseapp -> com.activityGuard.a
-com.activityGuard.vm.MainViewModel_HiltModules.BindsModule -> com.activityGuard.vm.MainViewModel_HiltModules.a
-com.activityGuard.vm.MainViewModel_HiltModules.KeyModule -> com.activityGuard.vm.MainViewModel_HiltModules.b
+com.activityGuard.vm.MainViewModel_HiltModules_KeyModule_ProvideFactory -> db.a
+com.activityGuard.vm.MainViewModel -> db.b
+com.activityGuard.vm.MainViewModel_HiltModules -> db.c
+com.activityGuard.vm.MainViewModel_Factory -> db.d
+com.activityGuard.vm.MainViewModel_HiltModules.BindsModule -> eb.a
+com.activityGuard.vm.MainViewModel_HiltModules.KeyModule -> eb.b
