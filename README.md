@@ -55,8 +55,6 @@ plugins {
 //    //包名混淆字符串
 //     dirNameCharPool = "abcdefghijklmnopqrstuvwxyz"
 //
-//    //混淆后都会输出在这个目录下
-//    outObfuscatedDir = "guard"
 //}
 
 
