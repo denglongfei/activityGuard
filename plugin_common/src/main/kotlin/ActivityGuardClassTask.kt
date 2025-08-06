@@ -1,24 +1,18 @@
 package com.kotlin
 
 import com.android.build.gradle.internal.tasks.BaseTask
-import com.android.builder.dexing.runR8
-import com.kotlin.asm.ClassNameClassVisitor
 import com.kotlin.handle.HandleClassFile
 import com.kotlin.model.ActivityGuardExtension
-import com.kotlin.model.ObfuscatorMapping
 import org.gradle.api.file.Directory
 import org.gradle.api.file.RegularFile
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.MapProperty
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
-import util.LogFileUtil
 import util.ObfuscatorUtil
-import util.logFileUtil
 import util.saveClassMappingFile
 
 /**
@@ -67,8 +61,7 @@ abstract class ActivityGuardClassTask : BaseTask() {
             split = "/",
             classNameCharPool = actGuard.classNameCharPool,
             dirNameCharPool = actGuard.dirNameCharPool,
-            outObfuscatedDir = actGuard.outObfuscatedDir,
-            otherChangePackageList = actGuard.otherChangePackageList
+            changePackageList = actGuard.changePackageList
         )
         val classMappingGet = classMapping.get().toMutableMap() as LinkedHashMap
 

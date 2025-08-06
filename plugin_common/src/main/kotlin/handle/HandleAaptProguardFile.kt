@@ -26,7 +26,6 @@ class HandleAaptProguardFile(
             split = ".",
             classNameCharPool = actGuard.classNameCharPool,
             dirNameCharPool = actGuard.dirNameCharPool,
-            outObfuscatedDir = actGuard.outObfuscatedDir,
         )
     }
 
@@ -163,10 +162,5 @@ class HandleAaptProguardFile(
             content = content.replace(" $oldText ", " $newText ")
         }
         file.writeText(content)
-        val keepString = "\n#keep插件ActivityGuard混淆后的代码\n" +
-                "-keep class ${actGuard.outObfuscatedDir}.**{ *; }"
-        if (!content.contains(keepString)) {
-            file.writeText(content + keepString)
-        }
     }
 }

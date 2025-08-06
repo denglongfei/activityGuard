@@ -3,6 +3,7 @@ package com.kotlin.asm
 import com.kotlin.model.ActivityGuardExtension
 import org.objectweb.asm.commons.Remapper
 import util.ObfuscatorUtil
+import util.toJson
 
 
 /**
@@ -75,15 +76,14 @@ class AsmReMapper(
      * 获取名称
      */
     private fun getObfuscatorName(name: String): String {
-        val obName = classMapping[name]
-        if (obName != null) {
-            return obName
+        val obfName = classMapping[name]
+        if (obfName != null) {
+            return obfName
         }
         //在白名单
         if (inRegex(whitePatterns, name)) {
             return name
         }
-
         //在额外混淆类
         if (inRegex(obfuscatorPatterns, name)) {
             if (name.contains("(") && name.contains(")")){

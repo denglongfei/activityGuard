@@ -10,8 +10,7 @@ class ObfuscatorUtil(
     private val split: String,//类名分隔符
     private val classNameCharPool: String, //类名字符
     private val dirNameCharPool: String, //包名字符
-    private val outObfuscatedDir: String, //输出目录
-    private val otherChangePackageList: HashSet<String> = hashSetOf(),// 额外需要混淆的类 需要修改包名
+    private val changePackageList: HashSet<String> = hashSetOf(),// 需要修改包名
 ) {
 //    private val split: String = "."
 //    private val dirNameCharPool = "abcdefghijklmnopqrstuvwxyz"
@@ -19,14 +18,12 @@ class ObfuscatorUtil(
 
 
     private val packagePattern by lazy {
-        otherChangePackageList.toPatterns()
+        changePackageList.toPatterns()
     }
 
     // 目录 和 混淆后目录
     var dirMapping = LinkedHashMap<String, String>()
         private set
-
-
 
 
     //存在的混淆目录名称
@@ -36,10 +33,6 @@ class ObfuscatorUtil(
     // 原目录名称为key  对应下的类名和混淆（不包含目录的
     private val dirAndClassList = LinkedHashMap<String, LinkedHashMap<String, String>>()
 
-
-    //xml中的混淆类
-    private val xmlDirMapping = LinkedHashMap<String, String>()
-    private val xmlClassMapping = LinkedHashMap<String, String>()
 
     /**
      * xml 获取混淆类名使用
@@ -71,67 +64,21 @@ class ObfuscatorUtil(
             dirAndClassList.getOrPut(dir) { LinkedHashMap() }[name] = obfuscatorName
             dirMapping[dir] = obfuscatorDir
             dirValueSet.add(obfuscatorDir)
-
-            xmlDirMapping[dir] = obfuscatorDir
-            xmlClassMapping[it.key] = it.value
         }
     }
 
-//    /**
-//     *  com.activityGuard.a to a.b
-//     */
-//    fun getObfuscatedClassName(originalName: String): String {
-//        val (dir, name) = getObfClassDirAndName(originalName)
-//        if (dir.isEmpty()) {
-//            return name
-//        }
-//        val newDir = dirMapping[dir] ?: let {
-//            val tem = generateDirName(dir,originalName)
-//            addDirMappingItem(dir, tem)
-//            tem
-//        }
-//        val newName = generateClassName(dir, name)
-//        dirAndClassList.getOrPut(dir) { linkedMapOf() }[name] = newName
-//        return if (newDir.isNotEmpty()) {
-//            "$newDir$split$newName"
-//        } else {
-//            "$newName"
-//        }
-//    }
-
-
+    /**
+     *  com.activityGuard.a to a.b
+     */
     fun getObfuscatedClassName(originalName: String): String {
         val (dir, name) = getObfClassDirAndName(originalName)
         if (dir.isEmpty()) {
             return name
         }
-        //xml存在当前类
-        val obClassName = xmlClassMapping[originalName]
-        if (obClassName != null) {
-            return obClassName
-        }
-
-        //xml 存在这个目录 需要重新计算 根据条件判断是否需要
-        val xmlDir = xmlDirMapping[dir]
-        val newDir = if (xmlDir != null) {
-            if (inRegex(packagePattern, originalName)) {
-                //需要改变目录
-                xmlDir
-            }else{
-                //不需要改变目录
-                dir
-            }
-        } else {
-            dirMapping[dir] ?: let {
-                val tem = generateDirName(dir, originalName)
-                //不混淆目录时
-                if (tem == dir) {
-                    tem
-                } else {
-                    addDirMappingItem(dir, tem)
-                    tem
-                }
-            }
+        val newDir = dirMapping[dir] ?: let {
+            val tem = generateDirName(dir, originalName)
+            addDirMappingItem(dir, tem)
+            tem
         }
         val newName = generateClassName(dir, name)
         dirAndClassList.getOrPut(dir) { linkedMapOf() }[name] = newName
@@ -141,6 +88,7 @@ class ObfuscatorUtil(
             "$newName"
         }
     }
+
 
     /**
      * 获取目录和类名
@@ -153,11 +101,7 @@ class ObfuscatorUtil(
     private var dirOffset = 0
 
     private fun generateDirName(dir: String, originalName: String): String {
-        //xml中的类 需要混淆包
-        if (split == ".") {
-            return getDirName()
-        }
-        //其他类 满足规则
+        // 满足规则 修改包名
         if (inRegex(packagePattern, originalName)) {
             return getDirName()
         }
@@ -166,7 +110,7 @@ class ObfuscatorUtil(
 
     private fun getDirName(): String {
         while (true) {
-            val dirName = "$outObfuscatedDir$split" + generateName(
+            val dirName = generateName(
                 dirMapping.size + dirOffset,
                 minLength = 2,
                 charset = dirNameCharPool

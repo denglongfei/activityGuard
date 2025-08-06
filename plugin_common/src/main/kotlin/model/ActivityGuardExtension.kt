@@ -16,10 +16,8 @@ open class ActivityGuardExtension {
     var otherClassList = hashSetOf<String>()
 
     //额外需要混淆 需要修改包名的类
-    var otherChangePackageList = hashSetOf<String>()
+    var changePackageList = hashSetOf<String>()
 
-    //混淆后都会输出在这个目录下
-    var outObfuscatedDir: String = "guard"
 
     //类名字字符串
     var classNameCharPool: String = "abcdefghijklmnopqrstuvwxyz0123456789"
