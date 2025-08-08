@@ -24,8 +24,8 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "activityGuard"
-include(":app")
-include(":model1")
+//include(":app")
+//include(":model1")
 
 include(":plugin_main")
 include(":plugin_common")
