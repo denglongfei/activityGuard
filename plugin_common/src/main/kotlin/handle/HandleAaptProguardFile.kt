@@ -26,6 +26,7 @@ class HandleAaptProguardFile(
             split = ".",
             classNameCharPool = actGuard.classNameCharPool,
             dirNameCharPool = actGuard.dirNameCharPool,
+            changePackageList = actGuard.changePackageList,
         )
     }
 
