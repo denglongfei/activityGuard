@@ -10,8 +10,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/model1" />
             <option value="$PROJECT_DIR$/plugin_agp_v74" />
             <option value="$PROJECT_DIR$/plugin_agp_v86" />
             <option value="$PROJECT_DIR$/plugin_agp_v87" />

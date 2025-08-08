@@ -2,8 +2,6 @@ dir mapping:
 com.activityGuard.confuseapp -》 com.activityGuard.confuseapp
 com.ndk.model1 -》 com.ndk.model1
 com.activityGuard.view -》 com.activityGuard.view
-com.activityGuard.vm -》 db
-com.activityGuard.vm.MainViewModel_HiltModules -》 eb
 
 
 
@@ -16,9 +14,3 @@ com.activityGuard.confuseapp.MyService -> com.activityGuard.confuseapp.e
 com.ndk.model1.ModelActivity1 -> com.ndk.model1.a
 com.ndk.model1.ModelActivity2 -> com.ndk.model1.b
 com.activityGuard.view.PlayView -> com.activityGuard.view.a
-com.activityGuard.vm.MainViewModel_HiltModules_KeyModule_ProvideFactory -> db.a
-com.activityGuard.vm.MainViewModel -> db.b
-com.activityGuard.vm.MainViewModel_HiltModules -> db.c
-com.activityGuard.vm.MainViewModel_Factory -> db.d
-com.activityGuard.vm.MainViewModel_HiltModules.BindsModule -> eb.a
-com.activityGuard.vm.MainViewModel_HiltModules.KeyModule -> eb.b
